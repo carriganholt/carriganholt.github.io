@@ -11433,7 +11433,7 @@ header.masthead .masthead-heading {
 
 @media (min-width: 768px) {
   header.masthead {
-    padding-top: 17rem;
+    padding-top: 20rem;
     padding-bottom: 12.5rem;
   }
   header.masthead .masthead-subheading {
@@ -11494,7 +11494,10 @@ header.masthead .masthead-heading {
 }
 
 .portfolio-modal .modal-dialog {
-  margin: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-right: 10rem;
+  margin-left: 10rem;
   max-width: 100vw;
 }
 .portfolio-modal .modal-content {

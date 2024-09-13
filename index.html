@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrigan Holt | Retro-Futuristic Web Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <div id="retro-background"></div>
+
+    <nav>
+        <div class="nav-dot" data-section="hero"></div>
+        <div class="nav-dot" data-section="services"></div>
+        <div class="nav-dot" data-section="portfolio"></div>
+        <div class="nav-dot" data-section="contact"></div>
+    </nav>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="glitch retro-text" data-text="Carrigan Holt">Carrigan Holt</h1>
+                <p class="hero-subtitle animated-text retro-text">Crafting Digital Realms</p>
+                <a href="#contact" class="cta-button retro-btn">Start Quest</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title animated-text retro-text">Skills Unlocked</h2>
+                <div class="services-grid">
+                    <div class="service-item retro-card">
+                        <i class="fas fa-code service-icon"></i>
+                        <h3 class="service-title animated-text retro-text">Code Mastery</h3>
+                        <p>Crafting powerful spells in the digital realm.</p>
+                        <div class="skill-bar" data-skill="95"></div>
+                    </div>
+                    <div class="service-item retro-card">
+                        <i class="fas fa-mobile-alt service-icon"></i>
+                        <h3 class="service-title animated-text retro-text">App Wizardry</h3>
+                        <p>Conjuring apps that adapt to user quests.</p>
+                        <div class="skill-bar" data-skill="90"></div>
+                    </div>
+                    <div class="service-item retro-card">
+                        <i class="fas fa-vr-cardboard service-icon"></i>
+                        <h3 class="service-title animated-text retro-text">VR Sorcery</h3>
+                        <p>Opening portals to immersive digital worlds.</p>
+                        <div class="skill-bar" data-skill="85"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <h2 class="section-title animated-text retro-text">Achievement Gallery</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item retro-card">
+                        <img src="/api/placeholder/600/400" alt="Project 1" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title retro-text">NeuroSync</h3>
+                            <p class="portfolio-category">AI-Powered Platform</p>
+                            <button class="portfolio-details-btn retro-btn">View Lore</button>
+                        </div>
+                    </div>
+                    <div class="portfolio-item retro-card">
+                        <img src="/api/placeholder/600/400" alt="Project 2" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title retro-text">EchoVerse</h3>
+                            <p class="portfolio-category">Virtual Reality Experience</p>
+                            <button class="portfolio-details-btn retro-btn">View Lore</button>
+                        </div>
+                    </div>
+                    <div class="portfolio-item retro-card">
+                        <img src="/api/placeholder/600/400" alt="Project 3" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title retro-text">QuantumLeap</h3>
+                            <p class="portfolio-category">Blockchain Innovation</p>
+                            <button class="portfolio-details-btn retro-btn">View Lore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title animated-text retro-text">Send a Message</h2>
+                <div class="contact-content retro-card">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:zencoder@example.com" class="retro-text">zencoder@example.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+1234567890" class="retro-text">+1 (234) 567-890</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="retro-text">Pixel Valley, Digital Realm</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="contact-cta">
+                        <p class="retro-text">Ready to embark on a digital adventure?</p>
+                        <a href="mailto:zencoder@example.com" class="cta-button retro-btn">Join Party</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="portfolio-modal">
+        <div class="modal-content retro-card">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title" class="retro-text"></h2>
+            <p id="modal-description"></p>
+            <img id="modal-image" src="" alt="Project Details">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

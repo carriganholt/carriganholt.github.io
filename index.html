@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carrigan Holt - Retro-Futuristic Developer specializing in web and app development">
     <title>Carrigan Holt | Retro-Futuristic Developer</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div id="loading-screen">
-        <div class="loader"></div>
+    <div id="loading-screen" aria-hidden="true">
+        <div class="loader" role="progressbar" aria-label="Loading..."></div>
     </div>
 
-    <div id="retro-background"></div>
+    <div id="retro-background" aria-hidden="true"></div>
 
-    <nav>
-        <div class="nav-dot" data-section="hero"></div>
-        <div class="nav-dot" data-section="services"></div>
-        <div class="nav-dot" data-section="portfolio"></div>
-        <div class="nav-dot" data-section="contact"></div>
+    <nav aria-label="Page navigation">
+        <button class="nav-dot" data-section="hero" aria-label="Navigate to Hero section"></button>
+        <button class="nav-dot" data-section="services" aria-label="Navigate to Services section"></button>
+        <button class="nav-dot" data-section="portfolio" aria-label="Navigate to Portfolio section"></button>
+        <button class="nav-dot" data-section="contact" aria-label="Navigate to Contact section"></button>
     </nav>
 
-    <main>
+    <main id="main-content">
         <section id="hero">
             <div class="hero-content">
                 <h1 class="glitch retro-text" data-text="Carrigan Holt">Carrigan Holt</h1>
@@ -40,13 +42,13 @@
                         <i class="fas fa-code service-icon" aria-hidden="true"></i>
                         <h3 class="service-title animated-text retro-text">Web Development</h3>
                         <p>Crafting powerful spells in the digital realm.</p>
-                        <div class="skill-bar" data-skill="95"></div>
+                        <div class="skill-bar" data-skill="95" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="Web Development skill: 95%"></div>
                     </div>
                     <div class="service-item retro-card">
                         <i class="fas fa-mobile-alt service-icon" aria-hidden="true"></i>
                         <h3 class="service-title animated-text retro-text">App Development</h3>
                         <p>Conjuring apps that adapt to user quests.</p>
-                        <div class="skill-bar" data-skill="90"></div>
+                        <div class="skill-bar" data-skill="90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="App Development skill: 90%"></div>
                     </div>
                 </div>
             </div>
@@ -57,7 +59,7 @@
                 <h2 class="section-title animated-text retro-text">Achievements</h2>
                 <div class="portfolio-grid">
                     <div class="portfolio-item retro-card">
-                        <img src="/api/placeholder/600/400" data-src="/api/placeholder/600/400" alt="NeuroSync Project" class="portfolio-image lazy-image">
+                        <img src="https://via.placeholder.com/600x400" alt="NeuroSync Project" class="portfolio-image">
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title retro-text">NeuroSync</h3>
                             <p class="portfolio-category">AI-Powered Platform</p>
@@ -65,7 +67,7 @@
                         </div>
                     </div>
                     <div class="portfolio-item retro-card">
-                        <img src="/api/placeholder/600/400" data-src="/api/placeholder/600/400" alt="EchoVerse Project" class="portfolio-image lazy-image">
+                        <img src="https://via.placeholder.com/600x400" alt="EchoVerse Project" class="portfolio-image">
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title retro-text">EchoVerse</h3>
                             <p class="portfolio-category">Virtual Reality Experience</p>
@@ -73,31 +75,7 @@
                         </div>
                     </div>
                     <div class="portfolio-item retro-card">
-                        <img src="/api/placeholder/600/400" data-src="/api/placeholder/600/400" alt="QuantumLeap Project" class="portfolio-image lazy-image">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title retro-text">QuantumLeap</h3>
-                            <p class="portfolio-category">Blockchain Innovation</p>
-                            <button class="portfolio-details-btn retro-btn">View Lore</button>
-                        </div>
-                    </div>
-                    <div class="portfolio-item retro-card">
-                        <img src="/api/placeholder/600/400" data-src="/api/placeholder/600/400" alt="NeuroSync Project" class="portfolio-image lazy-image">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title retro-text">NeuroSync</h3>
-                            <p class="portfolio-category">AI-Powered Platform</p>
-                            <button class="portfolio-details-btn retro-btn">View Lore</button>
-                        </div>
-                    </div>
-                    <div class="portfolio-item retro-card">
-                        <img src="/api/placeholder/600/400" data-src="/api/placeholder/600/400" alt="EchoVerse Project" class="portfolio-image lazy-image">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title retro-text">EchoVerse</h3>
-                            <p class="portfolio-category">Virtual Reality Experience</p>
-                            <button class="portfolio-details-btn retro-btn">View Lore</button>
-                        </div>
-                    </div>
-                    <div class="portfolio-item retro-card">
-                        <img src="/api/placeholder/600/400" data-src="/api/placeholder/600/400" alt="QuantumLeap Project" class="portfolio-image lazy-image">
+                        <img src="https://via.placeholder.com/600x400" alt="QuantumLeap Project" class="portfolio-image">
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title retro-text">QuantumLeap</h3>
                             <p class="portfolio-category">Blockchain Innovation</p>
@@ -111,7 +89,7 @@
         <section id="contact">
             <div class="container">
                 <h2 class="section-title animated-text retro-text">2-Player Mode</h2>
-                <div class="contact-content retro-card">
+                <div class="contact-content">
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-envelope" aria-hidden="true"></i>
@@ -130,7 +108,7 @@
                     </div>
                     <div class="contact-cta">
                         <p class="retro-text">Ready to embark on an adventure?</p>
-                        <a href="mailto:zencoder@example.com" class="cta-button retro-btn">Send a message</a>
+                        <a href="mailto:carriganholt@gmail.com" class="cta-button retro-btn">Send a message</a>
                     </div>
                 </div>
             </div>
@@ -142,7 +120,7 @@
             <button class="close-modal" aria-label="Close modal">&times;</button>
             <h2 id="modal-title" class="retro-text"></h2>
             <p id="modal-description"></p>
-            <img id="modal-image" src="" alt="Project Details">
+            <img id="modal-image" src="" alt="">
         </div>
     </div>
 

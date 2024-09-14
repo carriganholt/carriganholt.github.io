@@ -12,17 +12,19 @@
     const modalImage = document.getElementById('modal-image');
     const closeModal = document.querySelector('.close-modal');
 
-    // Throttle function for performance
-    function throttle(func, limit) {
-        let inThrottle;
+    // Debounce function for performance
+    function debounce(func, wait = 20, immediate = true) {
+        let timeout;
         return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
+            const context = this, args = arguments;
+            const later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
         }
     }
 
@@ -61,51 +63,54 @@
         loadingScreen.style.opacity = '0';
         setTimeout(() => {
             loadingScreen.style.display = 'none';
+            // Trigger the visibility of the first section
+            const firstSection = document.querySelector('section');
+            if (firstSection) {
+                firstSection.style.opacity = '1';
+                firstSection.style.transform = 'translateY(0)';
+            }
         }, 500);
     }
 
-// Smooth scrolling with controlled speed
-function initSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                smoothScroll(targetElement, 1500); // Scroll duration in milliseconds
-            }
+    // Smooth scrolling with controlled speed
+    function initSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    smoothScroll(targetElement, 1500); // Scroll duration in milliseconds
+                }
+            });
         });
-    });
-}
-
-function smoothScroll(target, duration) {
-    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
     }
 
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
+    function smoothScroll(target, duration) {
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
     }
-
-    requestAnimationFrame(animation);
-}
-
-// Make sure to call this function in your init() or main script
-initSmoothScrolling();
 
     // Intersection Observer for animated elements
     function initIntersectionObserver() {
@@ -118,6 +123,7 @@ initSmoothScrolling();
                         const skillLevel = entry.target.getAttribute('data-skill');
                         entry.target.style.width = `${skillLevel}%`;
                     }
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
@@ -125,24 +131,50 @@ initSmoothScrolling();
         animatedElements.forEach(element => {
             observer.observe(element);
         });
+
+        // Add this new code to handle section visibility
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            sectionObserver.observe(section);
+        });
     }
 
-    // Handle scroll events
-    const handleScroll = throttle(() => {
-        const scrollPos = window.pageYOffset;
-        sections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollPos >= sectionTop - window.innerHeight / 2 &&
-                scrollPos < sectionTop + sectionHeight - window.innerHeight / 2) {
-                section.classList.add('visible');
-                navDots[index].classList.add('active');
-            } else {
-                section.classList.remove('visible');
-                navDots[index].classList.remove('active');
-            }
+    // Handle navigation dots
+    function initNavDots() {
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navDots.forEach(dot => {
+                        dot.classList.toggle('active', dot.getAttribute('data-section') === id);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => {
+            navObserver.observe(section);
         });
-    }, 100);
+
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const targetId = dot.getAttribute('data-section');
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    smoothScroll(targetSection, 1000);
+                }
+            });
+        });
+    }
 
     // Lazy loading for images
     function initLazyLoading() {
@@ -177,6 +209,9 @@ initSmoothScrolling();
                 modalImage.alt = `${title} project image`;
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+
+                // Set focus to the modal for accessibility
+                modal.focus();
             });
         });
 
@@ -186,11 +221,28 @@ initSmoothScrolling();
                 closePortfolioModal();
             }
         });
+
+        // Close modal with Esc key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closePortfolioModal();
+            }
+        });
     }
 
     function closePortfolioModal() {
         modal.style.display = 'none';
         document.body.style.overflow = '';
+        // Return focus to the clicked portfolio item
+        document.querySelector('.portfolio-item:focus').focus();
+    }
+
+    // Error handling
+    function handleErrors() {
+        window.addEventListener('error', (e) => {
+            console.error('An error occurred:', e.error);
+            // You could add more sophisticated error handling here, such as displaying a user-friendly error message
+        });
     }
 
     // Initialize all functions
@@ -200,13 +252,12 @@ initSmoothScrolling();
         window.addEventListener('load', handleLoadingScreen);
         initSmoothScrolling();
         initIntersectionObserver();
-        window.addEventListener('scroll', handleScroll);
+        initNavDots();
         initLazyLoading();
         initPortfolioModal();
-        handleScroll(); // Call initially to set correct state
+        handleErrors();
     }
 
     // Run initialization
     init();
-
 })();

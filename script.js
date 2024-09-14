@@ -79,17 +79,14 @@
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    smoothScroll(targetElement, 1500); // Scroll duration in milliseconds
-                }
+                smoothScroll(targetId, 1000); // Scroll duration in milliseconds
             });
         });
     }
 
     function smoothScroll(target, duration) {
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        const targetElement = document.querySelector(target);
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         let startTime = null;
@@ -168,10 +165,7 @@
         navDots.forEach(dot => {
             dot.addEventListener('click', () => {
                 const targetId = dot.getAttribute('data-section');
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    smoothScroll(targetSection, 1000);
-                }
+                smoothScroll(`#${targetId}`, 1000);
             });
         });
     }
